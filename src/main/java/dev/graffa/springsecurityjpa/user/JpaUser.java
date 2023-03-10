@@ -70,7 +70,6 @@ import java.util.List;
 @SuperBuilder
 @Getter
 @Setter
-@RequiredArgsConstructor
 @NoArgsConstructor
 
 @ToString
