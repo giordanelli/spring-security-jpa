@@ -63,7 +63,7 @@ import java.util.Optional;
  * <code>    public UserService(JpaUserRepository userRepository, JpaAuthorityRepository authorityRepository,</code>
  * <code>                       PasswordEncoder passwordEncoder) {</code>
  * <code>         super(userRepository, authorityRepository, passwordEncoder);</code>
- * <code>     }
+ * <code>     }</code>
  *
  * <code>     @Override</code>
  * <code>     public void createUser(UserDetails userdetails) {</code>
@@ -80,7 +80,7 @@ import java.util.Optional;
  * <code>                             .enabled(castedUser.isEnabled()).accountNonExpired(castedUser.isAccountNonExpired())</code>
  * <code>                             .credentialsNonExpired(castedUser.isCredentialsNonExpired()).email(castedUser.getEmail())</code>
  * <code>                             .build());</code>
- * <code>             List<JpaAuthority> authorities = castedUser.getAuthorities().stream()</code>
+ * <code>             List&lt;JpaAuthority&gt; authorities = castedUser.getAuthorities().stream()</code>
  * <code>                     .map(auth -> authorityRepository.findById(auth.getAuthority())</code>
  * <code>                             .orElse(authorityRepository.save(JpaAuthority.builder().authority(auth.getAuthority()).build()))</code>
  * <code>                     ).toList();</code>
