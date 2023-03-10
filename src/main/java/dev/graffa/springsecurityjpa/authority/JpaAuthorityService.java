@@ -60,6 +60,8 @@ public class JpaAuthorityService {
     }
 
     public JpaAuthority createAuthority(String authority) {
+        if (authority == null || authority.length() == 0)
+            throw new IllegalArgumentException("Empty Authority");
         JpaAuthority jpaAuthority = JpaAuthority.builder().authority(authority).build();
         Optional<JpaAuthority> optionalAuthority = authorityRepository.findById(jpaAuthority.getAuthority());
         if (optionalAuthority.isPresent()) throw new IllegalArgumentException("Authority already present");
@@ -67,6 +69,8 @@ public class JpaAuthorityService {
     }
 
     public void deleteAuthority(String authority) {
+        Optional<JpaAuthority> jpaAuthority = authorityRepository.findById(authority);
+        if (jpaAuthority.isEmpty()) throw new AuthorityNotFoundException(authority);
         authorityRepository.deleteById(authority);
     }
 
