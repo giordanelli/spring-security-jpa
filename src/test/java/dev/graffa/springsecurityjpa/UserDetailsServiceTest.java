@@ -5,6 +5,7 @@ import dev.graffa.springsecurityjpa.authority.Role;
 import dev.graffa.springsecurityjpa.user.JpaUser;
 import dev.graffa.springsecurityjpa.user.JpaUserService;
 import dev.graffa.springsecurityjpa.user.UserNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Slf4j
 @SpringBootTest
 @ActiveProfiles("test")
 public class UserDetailsServiceTest {
@@ -81,6 +83,22 @@ public class UserDetailsServiceTest {
         assertThrows(BadCredentialsException.class, () -> context.setAuthentication(authenticationManager
                 .authenticate(UsernamePasswordAuthenticationToken.unauthenticated(username, pwd))));
 
+        userDetailsService.deleteUser(username);
+    }
+
+    @Test
+    void assertUserToString() {
+
+        String username = "randomUser", pwd = "pwd";
+
+        userDetailsService.createUser(JpaUser.builder().username(username).password(pwd).build());
+        JpaUser userDetails = (JpaUser) userDetailsService.loadUserByUsername(username);
+        userDetails.getAuthorities().add(JpaAuthority.builder().authority(Role.ADMIN.name).build());
+        userDetailsService.updateUser(userDetails);
+
+        userDetails = (JpaUser) userDetailsService.loadUserByUsername(username);
+
+        log.debug(userDetails.toString());
         userDetailsService.deleteUser(username);
     }
 
