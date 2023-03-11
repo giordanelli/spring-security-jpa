@@ -8,7 +8,7 @@ and Spring Data JPA.
 As Spring Security has built-in support for *JDBC*, but not for *Spring Data JPA*, every time a new project starts
 using both the technologies, it is necessary to run the SQL script stored in 
 
-        JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION
+        org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION
 
 against the used Database, optionally adapting it to the *Dialect* used by the Database in the project.
 
@@ -39,3 +39,26 @@ would give you less flexibility.
 ### Prerequisites
 
 - A *Password Encoder* Bean in the Context, for example a *BCryptPasswordEncoder*.
+
+## Usage
+
+1) Add the dependency in your pom.xml file.
+
+        <dependency>
+            <groupId>dev.graffa</groupId>
+            <artifactId>spring-security-jpa</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+2) extend:
+   - JpaUser
+   - JpaUserRepository
+   - JpaUserService
+   - JpaAuthority
+   - JpaAuthorityRepository
+   - JpaAuthorityService 
+   
+   within your Component Scan packages.
+
+
+3) Done!
