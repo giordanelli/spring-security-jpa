@@ -16,6 +16,7 @@
 
 package dev.graffa.springsecurityjpa.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.graffa.springsecurityjpa.authority.JpaAuthority;
 import jakarta.persistence.*;
 import lombok.*;
@@ -82,6 +83,7 @@ public class JpaUser implements UserDetails {
     protected String username;
 
     @Column(length = 60, nullable = false)
+    @JsonIgnore
     @NonNull
     protected String password;
     @Builder.Default
