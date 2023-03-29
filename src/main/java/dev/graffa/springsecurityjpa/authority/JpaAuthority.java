@@ -16,6 +16,7 @@
 
 package dev.graffa.springsecurityjpa.authority;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import dev.graffa.springsecurityjpa.user.JpaUser;
 import jakarta.persistence.*;
 import lombok.*;
@@ -72,6 +73,7 @@ public class JpaAuthority implements GrantedAuthority {
     @Column(length = 50, nullable = false, unique = true)
     protected String authority;
     @ManyToMany(mappedBy = "authorities")
+    @JsonBackReference
     protected Collection<JpaUser> users;
 
 }
