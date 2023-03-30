@@ -85,7 +85,6 @@ public class JpaUser implements UserDetails {
 
     @Column(length = 60, nullable = false)
     @NonNull
-    @JsonIgnore
     protected String password;
     @Builder.Default
     protected boolean enabled = true;
