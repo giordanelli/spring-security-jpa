@@ -10,7 +10,7 @@
     </parent>
     <groupId>dev.graffa</groupId>
     <artifactId>spring-security-jpa</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <name>spring-security-jpa</name>
     <description>Boilerplate code to introduce default Spring Security JPA entities and secure the project through
         them

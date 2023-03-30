@@ -73,7 +73,7 @@ public class JpaAuthority implements GrantedAuthority {
     @Column(length = 50, nullable = false, unique = true)
     protected String authority;
     @ManyToMany(mappedBy = "authorities")
-    @JsonBackReference(value = "user-authority")
+    @JsonBackReference
     protected Collection<JpaUser> users;
 
 }
