@@ -17,6 +17,7 @@
 package dev.graffa.springsecurityjpa.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dev.graffa.springsecurityjpa.authority.JpaAuthority;
 import jakarta.persistence.*;
 import lombok.*;
@@ -97,7 +98,7 @@ public class JpaUser implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Builder.Default
+    @JsonManagedReference(value = "user-authority")
     protected Collection<JpaAuthority> authorities = List.of();
-
 
 }
